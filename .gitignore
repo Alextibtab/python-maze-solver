@@ -1,0 +1,9 @@
+*.egg-info/
+.vscode/
+dist/
+build/
+.venv/
+env
+target
+.eggs/
+__pycache__

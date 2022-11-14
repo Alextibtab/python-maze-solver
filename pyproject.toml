@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_maze_solver"
+version = "0.0.1"
+authors = [
+    { name="Alexander C", email=""},
+]
+description = "A python maze solver with a GUI and created as part of a boot.dev project"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "setuptools",
+    "wheel",
+    "black"
+]
