@@ -7,9 +7,9 @@ if __name__ == "__main__":
     # line = Line(a, b)
 
     cell_a = Cell([True, True, True, True], 10, 20, 10, 20, "black", False)
-    cell_b = Cell([True, False, True, True], 30, 40, 10, 20, "Red", False)
-    cell_c = Cell([True, True, False, True], 50, 60, 10, 20, "Blue", False)
-    cell_d = Cell([True, True, True, False], 70, 80, 10, 20, "Green", False)
+    cell_b = Cell([True, False, True, True], 30, 40, 10, 20, "red", False)
+    cell_c = Cell([True, True, False, True], 50, 60, 10, 20, "blue", False)
+    cell_d = Cell([True, True, True, False], 70, 80, 10, 20, "green", False)
 
     win = Window(800, 600, "Maze Solver!")
     # win.draw_line(line, "black")
@@ -17,4 +17,9 @@ if __name__ == "__main__":
     win.draw_cell(cell_b)
     win.draw_cell(cell_c)
     win.draw_cell(cell_d)
+
+    win.draw_move(cell_a, cell_b)
+    win.draw_move(cell_b, cell_c)
+    win.draw_move(cell_c, cell_d)
+
     win.wait_for_close()
