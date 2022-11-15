@@ -46,9 +46,10 @@ class Maze:
                 self.__y1, self.__num_cols * self.__cell_size_x, self.__cell_size_x
             )
         ]
-        for cell in self.__cells:
-            self.__window.draw_cell(cell)
-            self._animate()
+        for column in self.__cells:
+            for cell in column:
+                self.__window.draw_cell(cell)
+                self._animate()
 
     def _animate(self):
         self.__window.redraw()
