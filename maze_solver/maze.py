@@ -1,6 +1,6 @@
 import time
 
-from graphics import Window, Cell
+from .graphics import Window, Cell
 
 
 class Maze:
