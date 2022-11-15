@@ -35,6 +35,8 @@ class Maze:
                     row_offset + column_offset + self.__cell_size_x,
                     row_offset + column_offset,
                     row_offset + column_offset + self.__cell_size_y,
+                    "black",
+                    self.__win
                 )
                 for row_offset in range(
                     self.__x1, self.__num_rows * self.__cell_size_y, self.__cell_size_y
