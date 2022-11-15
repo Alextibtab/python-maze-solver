@@ -19,6 +19,9 @@ class Window:
     def draw_line(self, line, fill_color):
         line.draw(self.__canvas, fill_color)
 
+    def draw_cell(self, cell):
+        cell.draw(self.__canvas)
+
     def wait_for_close(self):
         self.__running = True
         while self.__running:
@@ -55,3 +58,46 @@ class Line:
             width=2,
         )
         canvas.pack(fill=BOTH, expand=1)
+
+
+class Cell:
+    def __init__(self, walls, x1, x2, y1, y2, color, win):
+        self.__x1 = x1
+        self.__x2 = x2
+        self.__y1 = y1
+        self.__y2 = y2
+        self.__wall_color = color
+        self.__win = win
+
+        self.__walls = {
+            "top": {
+                "visible": walls[0],
+                "line": Line(Point(x1, y1), Point(x2, y1))
+            },
+            "right": {
+                "visible": walls[1],
+                "line": Line(Point(x2, y1), Point(x2, y2))
+            },
+            "bottom": {
+                "visible": walls[2],
+                "line": Line(Point(x1, y2), Point(x2, y2))
+            },
+            "left": {
+                "visible": walls[3],
+                "line": Line(Point(x1, y1), Point(x1, y2))
+            }   
+        }
+
+    def draw(self, canvas):
+        if self.__walls.top.visible:
+            self.__walls.top.line.draw(canvas, self.__wall_color)
+
+        if self.__walls.right.visible:
+            self.__walls.right.line.draw(canvas, self.__wall_color)
+
+        if self.__walls.bottom.visible:
+            self.__walls.bottom.line.draw(canvas, self.__wall_color)
+
+        if self.__walls.left.visible:
+            self.__walls.left.line.draw(canvas, self.__wall_color)
+
