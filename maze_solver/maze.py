@@ -36,14 +36,18 @@ class Maze:
                     row_offset,
                     row_offset + self.__cell_size_y,
                     "black",
-                    self.__win
+                    self.__win,
                 )
                 for row_offset in range(
-                    self.__x1, self.__x1 + self.__num_rows * self.__cell_size_y, self.__cell_size_y
+                    self.__x1,
+                    self.__x1 + self.__num_rows * self.__cell_size_y,
+                    self.__cell_size_y,
                 )
             ]
             for column_offset in range(
-                self.__y1, self.__y1 + self.__num_cols * self.__cell_size_x, self.__cell_size_x
+                self.__y1,
+                self.__y1 + self.__num_cols * self.__cell_size_x,
+                self.__cell_size_x,
             )
         ]
         for column in self.__cells:
