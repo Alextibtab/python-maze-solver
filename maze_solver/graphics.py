@@ -89,15 +89,15 @@ class Cell:
         }
 
     def draw(self, canvas):
-        if self.__walls.top.visible:
-            self.__walls.top.line.draw(canvas, self.__wall_color)
+        if self.__walls["top"]["visible"]:
+            self.__walls["top"]["line"].draw(canvas, self.__wall_color)
 
-        if self.__walls.right.visible:
-            self.__walls.right.line.draw(canvas, self.__wall_color)
+        if self.__walls["right"]["visible"]:
+            self.__walls["right"]["line"].draw(canvas, self.__wall_color)
 
-        if self.__walls.bottom.visible:
-            self.__walls.bottom.line.draw(canvas, self.__wall_color)
+        if self.__walls["bottom"]["visible"]:
+            self.__walls["bottom"]["line"].draw(canvas, self.__wall_color)
 
-        if self.__walls.left.visible:
-            self.__walls.left.line.draw(canvas, self.__wall_color)
+        if self.__walls["left"]["visible"]:
+            self.__walls["left"]["line"].draw(canvas, self.__wall_color)
 
