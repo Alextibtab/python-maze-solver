@@ -22,6 +22,9 @@ class Window:
     def draw_cell(self, cell):
         cell.draw(self.__canvas)
 
+    def draw_move(self, from_cell, to_cell, undo=False):
+        from_cell.draw_move(to_cell, self.__canvas, undo)
+
     def wait_for_close(self):
         self.__running = True
         while self.__running:
@@ -66,27 +69,36 @@ class Cell:
         self.__x2 = x2
         self.__y1 = y1
         self.__y2 = y2
+
+        self.__center = Point((x1 + x2) / 2, (y1 + y2) / 2)
+
         self.__wall_color = color
         self.__win = win
 
         self.__walls = {
             "top": {
                 "visible": walls[0],
-                "line": Line(Point(x1, y1), Point(x2, y1))
+                "line": Line(Point(self.__x1, self.__y1), Point(self.__x2, self.__y1)),
             },
             "right": {
                 "visible": walls[1],
-                "line": Line(Point(x2, y1), Point(x2, y2))
+                "line": Line(Point(self.__x2, self.__y1), Point(self.__x2, self.__y2)),
             },
             "bottom": {
                 "visible": walls[2],
-                "line": Line(Point(x1, y2), Point(x2, y2))
+                "line": Line(Point(self.__x1, self.__y2), Point(self.__x2, self.__y2)),
             },
             "left": {
                 "visible": walls[3],
-                "line": Line(Point(x1, y1), Point(x1, y2))
-            }   
+                "line": Line(Point(self.__x1, self.__y1), Point(self.__x1, self.__y2)),
+            },
         }
+
+    def update_wall_visibility(self, walls):
+        self.__walls["top"]["visible"] = walls[0]
+        self.__walls["right"]["visible"] = walls[1]
+        self.__walls["bottom"]["visible"] = walls[2]
+        self.__walls["left"]["visible"] = walls[3]
 
     def draw(self, canvas):
         if self.__walls["top"]["visible"]:
@@ -101,3 +113,6 @@ class Cell:
         if self.__walls["left"]["visible"]:
             self.__walls["left"]["line"].draw(canvas, self.__wall_color)
 
+    def draw_move(self, to_cell, canvas, undo):
+        color = "red" if not undo else "gray" 
+        Line(self.__center, to_cell.__center).draw(canvas, color)
