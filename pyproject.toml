@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "python_maze_solver"
 version = "0.0.1"
 authors = [
-    { name="Alexander C", email=""},
+    { name="Alexander C", email="temp_email@gmail.com"},
 ]
 description = "A python maze solver with a GUI and created as part of a boot.dev project"
 readme = "README.md"
