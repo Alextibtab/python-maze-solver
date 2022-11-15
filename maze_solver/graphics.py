@@ -114,5 +114,5 @@ class Cell:
             self.__walls["left"]["line"].draw(canvas, self.__wall_color)
 
     def draw_move(self, to_cell, canvas, undo):
-        color = "gray" if undo else "red" 
+        color = "gray" if undo else "red"
         Line(self.__center, to_cell.__center).draw(canvas, color)
