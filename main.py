@@ -22,7 +22,7 @@ if __name__ == "__main__":
     # win.draw_move(cell_b, cell_c)
     # win.draw_move(cell_c, cell_d)
     win = Window(1920, 1080, "Maze Solver!")
-    maze = Maze(win, 3, 3, 50, 50, 20, 20, False)
+    maze = Maze(win, 3, 3, 25, 25, 30, 30, False)
 
 
     win.wait_for_close()
