@@ -103,15 +103,23 @@ class Cell:
     def draw(self, canvas):
         if self.__walls["top"]["visible"]:
             self.__walls["top"]["line"].draw(canvas, self.__wall_color)
+        else:
+            self.__walls["top"]["line"].draw(canvas, "white")
 
         if self.__walls["right"]["visible"]:
             self.__walls["right"]["line"].draw(canvas, self.__wall_color)
+        else:
+            self.__walls["right"]["line"].draw(canvas, "white")
 
         if self.__walls["bottom"]["visible"]:
             self.__walls["bottom"]["line"].draw(canvas, self.__wall_color)
+        else:
+            self.__walls["bottom"]["line"].draw(canvas, "white")
 
         if self.__walls["left"]["visible"]:
             self.__walls["left"]["line"].draw(canvas, self.__wall_color)
+        else:
+            self.__walls["left"]["line"].draw(canvas, "white")
 
     def draw_move(self, to_cell, canvas, undo):
         color = "gray" if undo else "red"
