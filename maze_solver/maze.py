@@ -84,11 +84,11 @@ class Maze:
                 to_visit[0] = [column, row-1]
 
             # Check right cell
-            if column < self.__num_cols and not self.__cells[column+1][row].is_visited():
+            if column < self.__num_cols - 1 and not self.__cells[column+1][row].is_visited():
                 to_visit[1] = [column+1, row]
 
             # Check bottom cell
-            if row < self.__num_rows and not self.__cells[column][row+1].is_visited():
+            if row < self.__num_rows - 1 and not self.__cells[column][row+1].is_visited():
                 to_visit[2] = [column, row+1]
 
             # Check left cell
