@@ -74,6 +74,8 @@ class Cell:
 
         self.__wall_color = color
         self.__win = win
+        
+        self.__visited = False
 
         self.__walls = {
             "top": {
@@ -93,6 +95,27 @@ class Cell:
                 "line": Line(Point(self.__x1, self.__y1), Point(self.__x1, self.__y2)),
             },
         }
+
+    def is_visited(self):
+        return self.__visited
+
+    def visit(self):
+        self.__visited = True
+
+    def unvisit(self):
+        self.__visited = False
+
+    def break_top(self):
+        self.__walls["top"]["visible"] = False
+
+    def break_right(self):
+        self.__walls["right"]["visible"] = False
+
+    def break_bottom(self):
+        self.__walls["bottom"]["visible"] = False
+
+    def break_left(self):
+        self.__walls["left"]["visible"] = False
 
     def update_wall_visibility(self, walls):
         self.__walls["top"]["visible"] = walls[0]
