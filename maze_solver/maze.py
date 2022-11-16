@@ -148,7 +148,7 @@ class Maze:
             return True
         
         # Check top cell
-        if row > 0 and not self.__cells[column][row-1].is_visited() and not self.__cells[column][row-1].has_top_wall():
+        if row > 0 and not self.__cells[column][row-1].is_visited() and not self.__cells[column][row].has_top_wall():
             self.__window.draw_move(self.__cells[column][row], self.__cells[column][row-1])
             if self._solve_r(column, row-1):
                 return True
@@ -156,7 +156,7 @@ class Maze:
                 self.__window.draw_move(self.__cells[column][row], self.__cells[column][row-1], True)
 
         # Check right cell
-        if column < self.__num_cols - 1 and not self.__cells[column+1][row].is_visited() and not self.__cells[column+1][row].has_right_wall():
+        if column < self.__num_cols - 1 and not self.__cells[column+1][row].is_visited() and not self.__cells[column][row].has_right_wall():
             self.__window.draw_move(self.__cells[column][row], self.__cells[column+1][row])
             if self._solve_r(column+1, row):
                 return True
@@ -164,7 +164,7 @@ class Maze:
                 self.__window.draw_move(self.__cells[column][row], self.__cells[column+1][row], True)
 
         # Check bottom cell
-        if row < self.__num_rows - 1 and not self.__cells[column][row+1].is_visited() and not self.__cells[column][row+1].has_bottom_wall():
+        if row < self.__num_rows - 1 and not self.__cells[column][row+1].is_visited() and not self.__cells[column][row].has_bottom_wall():
             self.__window.draw_move(self.__cells[column][row], self.__cells[column][row+1])
             if self._solve_r(column, row+1):
                 return True
@@ -172,7 +172,7 @@ class Maze:
                 self.__window.draw_move(self.__cells[column][row], self.__cells[column][row+1], True)
 
         # Check left cell
-        if column > 0 and not self.__cells[column-1][row].is_visited() and not self.__cells[column-1][row].has_left_wall():
+        if column > 0 and not self.__cells[column-1][row].is_visited() and not self.__cells[column][row].has_left_wall():
             self.__window.draw_move(self.__cells[column][row], self.__cells[column-1][row])
             if self._solve_r(column-1, row):
                 return True
