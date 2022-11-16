@@ -138,6 +138,49 @@ class Maze:
             for cell in column:
                 cell.unvisit()
 
+    def solve(self):
+        return self._solve_r(0, 0)
+
+    def _solve_r(self, column, row):
+        self._animate(0.05)
+        self.__cells[column][row].visit()
+        if column == self.__num_cols - 1 and row == self.__num_rows -1:
+            return True
+        
+        # Check top cell
+        if row > 0 and self.__cells[column][row-1].is_visited() and self.__cells[column][row-1].has_top_wall():
+            self.__window.draw_move(self.__cells[column][row], self.__cells[column][row-1])
+            if self._solve_r(column, row-1):
+                return True
+            else:
+                self.__window.draw_move(self.__cells[column][row], self.__cells[column][row-1], True)
+
+        # Check right cell
+        if column < self.__num_cols - 1 and self.__cells[column+1][row].is_visited() and self.__cells[column+1][row].has_top_wall():
+            self.__window.draw_move(self.__cells[column][row], self.__cells[column+1][row])
+            if self._solve_r(column+1, row):
+                return True
+            else:
+                self.__window.draw_move(self.__cells[column][row], self.__cells[column+1][row], True)
+
+        # Check bottom cell
+        if row < self.__num_rows - 1 and self.__cells[column][row+1].is_visited() and self.__cells[column][row+1].has_top_wall():
+            self.__window.draw_move(self.__cells[column][row], self.__cells[column][row+1])
+            if self._solve_r(column, row+1):
+                return True
+            else:
+                self.__window.draw_move(self.__cells[column][row], self.__cells[column][row+1], True)
+
+        # Check left cell
+        if column > 0 and self.__cells[column-1][row].is_visited() and self.__cells[column-1][row].has_top_wall():
+            self.__window.draw_move(self.__cells[column][row], self.__cells[column-1][row])
+            if self._solve_r(column-1, row):
+                return True
+            else:
+                self.__window.draw_move(self.__cells[column][row], self.__cells[column-1][row], True)
+
+        return False
+
     def _animate(self, duration):
         self.__window.redraw()
         time.sleep(duration)

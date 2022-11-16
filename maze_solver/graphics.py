@@ -117,6 +117,18 @@ class Cell:
     def break_left(self):
         self.__walls["left"]["visible"] = False
 
+    def has_top_wall(self):
+        return self.__walls["top"]["visible"]
+
+    def has_right_wall(self):
+        return self.__walls["right"]["visible"]
+
+    def has_bottom_wall(self):
+        return self.__walls["bottom"]["visible"]
+
+    def has_left_wall(self):
+        return self.__walls["left"]["visible"]
+
     def update_wall_visibility(self, walls):
         self.__walls["top"]["visible"] = walls[0]
         self.__walls["right"]["visible"] = walls[1]
