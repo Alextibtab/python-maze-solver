@@ -58,7 +58,7 @@ class Maze:
         for column in self.__cells:
             for cell in column:
                 self.__window.draw_cell(cell)
-                self._animate()
+                self._animate(0.001)
 
         self._break_entrance_and_exit()
         self._break_walls_r(0, 0)
@@ -67,11 +67,11 @@ class Maze:
     def _break_entrance_and_exit(self):
         self.__cells[0][0].update_wall_visibility([False, True, True, True])
         self.__window.draw_cell(self.__cells[0][0])
-        self._animate()
+        self._animate(1)
 
         self.__cells[-1][-1].update_wall_visibility([True, True, False, True])
         self.__window.draw_cell(self.__cells[-1][-1])
-        self._animate()
+        self._animate(1)
 
     def _break_walls_r(self, column, row):
         self.__cells[column][row].visit()
@@ -79,38 +79,27 @@ class Maze:
             to_visit = [None] * 4
 
             # Check top cell 
-            try:
-                if not self.__cells[column][row-1].is_visited() and row != 0:
-                    to_visit[0] = [column, row-1]
-            except IndexError:
-                pass
+            if not self.__cells[column][row-1].is_visited() and row != 0:
+                to_visit[0] = [column, row-1]
 
             # Check right cell
-            try:
-                if not self.__cells[column+1][row].is_visited():
-                    to_visit[1] = [column+1, row]
-            except IndexError:
-                pass
+            if not self.__cells[column+1][row].is_visited() and column != self.__num_cols:
+                to_visit[1] = [column+1, row]
 
             # Check bottom cell
-            try:
-                if not self.__cells[column][row+1].is_visited():
-                    to_visit[2] = [column, row+1]
-            except IndexError:
-                pass
+            if not self.__cells[column][row+1].is_visited() and row != self.__num_rows:
+                to_visit[2] = [column, row+1]
 
             # Check left cell
-            try:
-                if not self.__cells[column-1][row].is_visited() and column != 0:
-                    to_visit[3] = [column-1, row]
-            except IndexError:
-                pass
+            if not self.__cells[column-1][row].is_visited() and column != 0:
+                to_visit[3] = [column-1, row]
 
-            if len(to_visit) == 0:
+
+            valid_directions = [i for i, v in enumerate(to_visit) if v is not None]
+            if len(valid_directions) == 0:
                 self.__window.draw_cell(self.__cells[column][row])
                 return
-            
-            valid_directions = [i for i, v in enumerate(to_visit) if v is not None]
+              
             direction = random.choice(valid_directions)
             self._break_walls(column, row, direction)
             self._break_walls_r(to_visit[direction][0], to_visit[direction][1])
@@ -141,13 +130,13 @@ class Maze:
             self.__window.draw_cell(self.__cells[column-1][row])
 
         self.__window.draw_cell(self.__cells[column][row])
-        self._animate()
+        self._animate(0.5)
 
     def _reset_cells_visited(self):
         for column in self.__cells:
             for cell in column:
                 cell.unvisit()
 
-    def _animate(self):
+    def _animate(self, duration):
         self.__window.redraw()
-        time.sleep(0.01)
+        time.sleep(duration)
