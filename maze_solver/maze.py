@@ -80,7 +80,7 @@ class Maze:
 
             # Check top cell 
             try:
-                if not self.__cells[column][row-1].is_visited():
+                if not self.__cells[column][row-1].is_visited() and row != 0:
                     to_visit[0] = [column, row-1]
             except IndexError:
                 pass
@@ -101,7 +101,7 @@ class Maze:
 
             # Check left cell
             try:
-                if not self.__cells[column-1][row].is_visited():
+                if not self.__cells[column-1][row].is_visited() and column != 0:
                     to_visit[3] = [column-1, row]
             except IndexError:
                 pass
