@@ -55,6 +55,15 @@ class Maze:
                 self.__window.draw_cell(cell)
                 self._animate()
 
+    def _break_entrance_and_exit(self):
+        self.__cells[0][0].update_wall_visibility([False, True, True, True])
+        self.__window.draw_cell(self.__cells[0][0])
+        self._animate()
+
+        self.__cells[-1][-1].update_wall_visibility([True, True, False, True])
+        self.__window.draw_cell(self.__cells[-1][-1])
+        self._animate()
+
     def _animate(self):
         self.__window.redraw()
         time.sleep(0.01)
