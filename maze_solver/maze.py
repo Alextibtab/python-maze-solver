@@ -81,28 +81,28 @@ class Maze:
             # Check top cell 
             try:
                 if not self.__cells[column][row-1].is_visited():
-                    to_visit[0][column, row-1]
+                    to_visit[0] = [column, row-1]
             except IndexError:
                 pass
 
             # Check right cell
             try:
                 if not self.__cells[column+1][row].is_visited():
-                    to_visit[1][column+1, row]
+                    to_visit[1] = [column+1, row]
             except IndexError:
                 pass
 
             # Check bottom cell
             try:
                 if not self.__cells[column][row+1].is_visited():
-                    to_visit[2][column, row+1]
+                    to_visit[2] = [column, row+1]
             except IndexError:
                 pass
 
             # Check left cell
             try:
                 if not self.__cells[column-1][row].is_visited():
-                    to_visit[3][column-1, row]
+                    to_visit[3] = [column-1, row]
             except IndexError:
                 pass
 
