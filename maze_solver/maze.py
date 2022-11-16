@@ -58,8 +58,9 @@ class Maze:
         for column in self.__cells:
             for cell in column:
                 self.__window.draw_cell(cell)
-                self._animate(0.001)
+                # self._animate(0.001)
 
+        self._animate(0.001)
         self._break_entrance_and_exit()
         self._break_walls_r(0, 0)
         self._reset_cells_visited()
@@ -67,11 +68,11 @@ class Maze:
     def _break_entrance_and_exit(self):
         self.__cells[0][0].update_wall_visibility([False, True, True, True])
         self.__window.draw_cell(self.__cells[0][0])
-        self._animate(1)
+        self._animate(0.5)
 
         self.__cells[-1][-1].update_wall_visibility([True, True, False, True])
         self.__window.draw_cell(self.__cells[-1][-1])
-        self._animate(1)
+        self._animate(0.5)
 
     def _break_walls_r(self, column, row):
         self.__cells[column][row].visit()
@@ -79,19 +80,19 @@ class Maze:
             to_visit = [None] * 4
 
             # Check top cell 
-            if not self.__cells[column][row-1].is_visited() and row != 0:
+            if row > 0 and not self.__cells[column][row-1].is_visited():
                 to_visit[0] = [column, row-1]
 
             # Check right cell
-            if not self.__cells[column+1][row].is_visited() and column != self.__num_cols:
+            if column < self.__num_cols and not self.__cells[column+1][row].is_visited():
                 to_visit[1] = [column+1, row]
 
             # Check bottom cell
-            if not self.__cells[column][row+1].is_visited() and row != self.__num_rows:
+            if row < self.__num_rows and not self.__cells[column][row+1].is_visited():
                 to_visit[2] = [column, row+1]
 
             # Check left cell
-            if not self.__cells[column-1][row].is_visited() and column != 0:
+            if column > 0 and not self.__cells[column-1][row].is_visited():
                 to_visit[3] = [column-1, row]
 
 
@@ -130,7 +131,7 @@ class Maze:
             self.__window.draw_cell(self.__cells[column-1][row])
 
         self.__window.draw_cell(self.__cells[column][row])
-        self._animate(0.5)
+        self._animate(0.001)
 
     def _reset_cells_visited(self):
         for column in self.__cells:

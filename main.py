@@ -21,8 +21,8 @@ if __name__ == "__main__":
     # win.draw_move(cell_a, cell_b)
     # win.draw_move(cell_b, cell_c)
     # win.draw_move(cell_c, cell_d)
-    win = Window(1920, 1080, "Maze Solver!")
-    maze = Maze(win, 3, 3, 25, 25, 30, 30, False)
+    win = Window(2560, 1440, "Maze Solver!")
+    maze = Maze(win, 3, 3, 70, 126, 20, 20, False)
 
 
     win.wait_for_close()
